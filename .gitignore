@@ -1,0 +1,109 @@
+# ------------------------------------------------------------
+# Godot generated files
+# ------------------------------------------------------------
+
+.godot/
+*.translation
+*.import
+
+
+# ------------------------------------------------------------
+# Exported builds
+# ------------------------------------------------------------
+
+/build/
+/builds/
+/dist/
+/export/
+/exports/
+
+# Web export artifacts
+*.wasm
+*.pck
+
+# ------------------------------------------------------------
+# Secrets and environment files
+# ------------------------------------------------------------
+
+.env
+.env.*
+!.env.example
+
+# ------------------------------------------------------------
+# Image and asset editor artifacts
+# ------------------------------------------------------------
+
+# macOS resource-fork files often created beside images
+._*
+
+# Backup files from image editors
+*.aseprite~
+*.kra~
+*.xcf~
+*.psd~
+*.ai~
+
+# Blender backup files
+*.blend1
+*.blend2
+*.blend3
+
+# Generic temporary and backup files
+*.tmp
+*.temp
+*.bak
+*.backup
+*.orig
+*.swp
+*.swo
+*~
+
+# ------------------------------------------------------------
+# Operating system junk
+# ------------------------------------------------------------
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+.directory
+.Trash-*
+
+# ------------------------------------------------------------
+# IDE and editor files
+# ------------------------------------------------------------
+
+.idea/
+.vscode/
+*.code-workspace
+
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# ------------------------------------------------------------
+# C# / .NET builds
+# ------------------------------------------------------------
+
+bin/
+obj/
+
+# ------------------------------------------------------------
+# Logs and crash dumps
+# ------------------------------------------------------------
+
+*.log
+*.stackdump
+crash_logs/

@@ -1,0 +1,32 @@
+[gd_scene format=3 uid="uid://dxexlluj30ndj"]
+
+[ext_resource type="Script" uid="uid://dimbub8fpl2ki" path="res://world/bad_drop/bad_drop.gd" id="1_tpio2"]
+[ext_resource type="AudioStream" uid="uid://cs73d6ed01760" path="res://world/good_drop/Tap.wav" id="2_pb3nk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_dyoc1"]
+radius = 15.033297
+
+[node name="BadDrop" type="RigidBody2D" unique_id=1556205979]
+collision_layer = 2
+collision_mask = 2
+script = ExtResource("1_tpio2")
+
+[node name="Polygon2D" type="Polygon2D" parent="." unique_id=87333615]
+position = Vector2(-0.5, -2)
+scale = Vector2(1.5, 1.815)
+color = Color(1, 0, 0, 1)
+polygon = PackedVector2Array(-6.1176467, -3.8888888, 0.4705882, -6.222222, 7.058823, -3.8888888, 9.882353, 1.5555555, 7.058823, 6.9999995, 0.4705882, 9.333333, -6.1176467, 6.9999995, -8.941175, 1.5555555)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=728111547]
+shape = SubResource("CircleShape2D_dyoc1")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=1530101468]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1174548836]
+shape = SubResource("CircleShape2D_dyoc1")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=435343167]
+stream = ExtResource("2_pb3nk")
+pitch_scale = 0.45
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

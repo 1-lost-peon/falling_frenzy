@@ -1,0 +1,119 @@
+[gd_scene format=3 uid="uid://duk23si6l6ny1"]
+
+[ext_resource type="Script" uid="uid://bia1l67q1y6p6" path="res://world/world.gd" id="1_h5o24"]
+[ext_resource type="PackedScene" uid="uid://lrinlb8xkn2x" path="res://world/good_drop/good_drop.tscn" id="2_4717r"]
+[ext_resource type="PackedScene" uid="uid://dxexlluj30ndj" path="res://world/bad_drop/bad_drop.tscn" id="3_h5o24"]
+[ext_resource type="PackedScene" uid="uid://cxm5iyfnt55ym" path="res://world/player/player.tscn" id="7_sc4t8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dyoc1"]
+size = Vector2(1240, 299)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tcf2h"]
+size = Vector2(233, 724.5)
+
+[node name="World" type="Control" unique_id=1273771794]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h5o24")
+falling_object_scene = ExtResource("2_4717r")
+falling_object_scene2 = ExtResource("3_h5o24")
+next_screen_path = "uid://b0mxt7mpea850"
+auto_advance = false
+
+[node name="Background" type="ColorRect" parent="." unique_id=851565235]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.08, 0.08, 0.08, 1)
+
+[node name="Player1Score" type="Label" parent="." unique_id=455446615]
+layout_mode = 1
+offset_left = 54.0
+offset_top = 48.0
+offset_right = 123.0
+offset_bottom = 71.0
+theme_override_colors/font_color = Color(0.70133334, 0.44, 1, 1)
+text = "SCORE: 0"
+
+[node name="Player2Score" type="Label" parent="." unique_id=743302497]
+layout_mode = 1
+offset_left = 1009.0
+offset_top = 48.0
+offset_right = 1078.0
+offset_bottom = 71.0
+theme_override_colors/font_color = Color(0.9666667, 1, 0, 1)
+text = "SCORE: 0"
+
+[node name="Level" type="Node2D" parent="." unique_id=592903270]
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Level" unique_id=630149947]
+position = Vector2(0, 64)
+collision_layer = 3
+collision_mask = 3
+
+[node name="Polygon2D" type="Polygon2D" parent="Level/StaticBody2D" unique_id=1887930539]
+polygon = PackedVector2Array(0, 800, 0, 500, 1152, 500, 1152, 800)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/StaticBody2D" unique_id=1890030533]
+position = Vector2(568, 649.5)
+shape = SubResource("RectangleShape2D_dyoc1")
+
+[node name="StaticBody2D2" type="StaticBody2D" parent="Level" unique_id=1098710222]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/StaticBody2D2" unique_id=471938508]
+position = Vector2(-116, 294.25)
+shape = SubResource("RectangleShape2D_tcf2h")
+
+[node name="StaticBody2D3" type="StaticBody2D" parent="Level" unique_id=640894288]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Level/StaticBody2D3" unique_id=77419347]
+position = Vector2(1269, 294.25)
+shape = SubResource("RectangleShape2D_tcf2h")
+
+[node name="Player1" parent="." unique_id=1612050767 instance=ExtResource("7_sc4t8")]
+modulate = Color(0.7899998, 0.39999998, 1, 1)
+position = Vector2(506, 350)
+
+[node name="Player2" parent="." unique_id=548996706 instance=ExtResource("7_sc4t8")]
+modulate = Color(0.9666667, 1, 0, 1)
+position = Vector2(766, 350)
+controller_id = 1
+
+[node name="SpawnTimer" type="Timer" parent="." unique_id=1720189928]
+wait_time = 0.5
+autostart = true
+
+[node name="MarkLeft" type="Marker2D" parent="." unique_id=2047727025]
+
+[node name="MarkRight" type="Marker2D" parent="." unique_id=1515790972]
+position = Vector2(1152, 0)
+
+[node name="Timer" type="Timer" parent="." unique_id=717526919]
+wait_time = 90.0
+autostart = true
+
+[node name="Label" type="Label" parent="." unique_id=2127755999]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -63.5
+offset_right = 63.5
+offset_bottom = 88.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 64
+text = "0:00"
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
