@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://cxm5iyfnt55ym"]
 
 [ext_resource type="Script" uid="uid://dn5ku6sah5g7t" path="res://world/player/player.gd" id="1_2gpuf"]
-[ext_resource type="Texture2D" uid="uid://d03ex7v6o6be8" path="res://world/player/frog.png" id="2_bvkkv"]
+[ext_resource type="Texture2D" uid="uid://trdj8d2cr47h" path="res://icon.svg" id="2_bvkkv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dyoc1"]
 size = Vector2(128, 128)
@@ -10,7 +10,7 @@ size = Vector2(128, 128)
 script = ExtResource("1_2gpuf")
 
 [node name="Sprite2D" type="Sprite2D" parent="." unique_id=2071711882]
-scale = Vector2(0.05, 0.05)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("2_bvkkv")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=2075014136]
