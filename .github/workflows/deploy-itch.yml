@@ -1,0 +1,77 @@
+name: Deploy Web Build to itch.io
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+env:
+  GODOT_VERSION: "4.7"
+  GODOT_RELEASE: "stable"
+
+  EXPORT_PRESET: "Web"
+  EXPORT_DIR: "build/web"
+  EXPORT_FILE: "build/web/index.html"
+
+  ITCH_USERNAME: "1-lost-peon"
+  ITCH_GAME: "falling-frenzy"
+  ITCH_CHANNEL: "web"
+
+jobs:
+  export-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Check out project
+        uses: actions/checkout@v4
+
+      - name: Install Godot and export templates
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          GODOT_TAG="${GODOT_VERSION}-${GODOT_RELEASE}"
+          GODOT_FILE="Godot_v${GODOT_TAG}_linux.x86_64"
+          TEMPLATE_FILE="Godot_v${GODOT_TAG}_export_templates.tpz"
+
+          wget -q \
+            "https://github.com/godotengine/godot-builds/releases/download/${GODOT_TAG}/${GODOT_FILE}.zip"
+
+          wget -q \
+            "https://github.com/godotengine/godot-builds/releases/download/${GODOT_TAG}/${TEMPLATE_FILE}"
+
+          unzip -q "${GODOT_FILE}.zip"
+          chmod +x "${GODOT_FILE}"
+
+          TEMPLATE_DIR="$HOME/.local/share/godot/export_templates/${GODOT_VERSION}.${GODOT_RELEASE}"
+
+          mkdir -p "${TEMPLATE_DIR}"
+          unzip -q "${TEMPLATE_FILE}" -d downloaded_templates
+          mv downloaded_templates/templates/* "${TEMPLATE_DIR}/"
+
+      - name: Export web game
+        shell: bash
+        run: |
+          mkdir -p "${EXPORT_DIR}"
+
+          "./Godot_v${GODOT_VERSION}-${GODOT_RELEASE}_linux.x86_64" \
+            --headless \
+            --path . \
+            --export-release "${EXPORT_PRESET}" "${EXPORT_FILE}"
+
+      - name: Install itch.io Butler
+        uses: remarkablegames/setup-butler@v3
+
+      - name: Upload to itch.io
+        shell: bash
+        env:
+          BUTLER_API_KEY: ${{ secrets.BUTLER_API_KEY }}
+        run: |
+          butler push \
+            "${EXPORT_DIR}" \
+            "${ITCH_USERNAME}/${ITCH_GAME}:${ITCH_CHANNEL}" \
+            --userversion "${GITHUB_SHA::7}"
