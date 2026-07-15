@@ -1,7 +1,8 @@
 [gd_scene format=3 uid="uid://lrinlb8xkn2x"]
 
 [ext_resource type="Script" uid="uid://cl8pembgpfc7r" path="res://world/good_drop/good_drop.gd" id="1_pvp7q"]
-[ext_resource type="AudioStream" uid="uid://cs73d6ed01760" path="res://world/good_drop/Tap.wav" id="2_ltsd0"]
+[ext_resource type="AudioStream" uid="uid://dw7627pnmk87e" path="res://world/good_drop/Tap.wav" id="2_ltsd0"]
+[ext_resource type="Texture2D" uid="uid://cbl3cxixidcba" path="res://world/fall_good.png" id="3_hlh3i"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_dyoc1"]
 
@@ -11,6 +12,7 @@ collision_mask = 2
 script = ExtResource("1_pvp7q")
 
 [node name="Polygon2D" type="Polygon2D" parent="." unique_id=87333615]
+visible = false
 position = Vector2(-0.5, -2)
 scale = Vector2(1.0625, 1.2857143)
 color = Color(0, 1, 0.29999995, 1)
@@ -26,5 +28,10 @@ shape = SubResource("CircleShape2D_dyoc1")
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=408305120]
 stream = ExtResource("2_ltsd0")
+
+[node name="FallGood" type="Sprite2D" parent="." unique_id=1607962514]
+position = Vector2(0.18748271, 0.16118431)
+scale = Vector2(0.01125481, 0.011254808)
+texture = ExtResource("3_hlh3i")
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
