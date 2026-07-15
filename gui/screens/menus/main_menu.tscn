@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://b0mxt7mpea850"]
 
 [ext_resource type="Script" uid="uid://bdbx32dxa1ti1" path="res://gui/screens/menus/main_menu.gd" id="1_owke6"]
+[ext_resource type="Texture2D" uid="uid://banne0bcfaaep" path="res://world/maine_menu.png" id="2_owke6"]
 
 [node name="MainMenu" type="Control" unique_id=1600305850]
 layout_mode = 3
@@ -39,25 +40,28 @@ theme_override_font_sizes/font_size = 128
 text = "Falling Frenzy"
 horizontal_alignment = 1
 
-[node name="Button" type="Button" parent="." unique_id=729065800]
-layout_mode = 1
+[node name="MainPlayer" type="AudioStreamPlayer" parent="." unique_id=1085070788]
+volume_db = -5.0
+autoplay = true
+
+[node name="MaineMenu" type="Sprite2D" parent="." unique_id=86380601]
+position = Vector2(578.3889, 322.50003)
+scale = Vector2(0.34571242, 0.2654321)
+texture = ExtResource("2_owke6")
+
+[node name="Button" type="Button" parent="MaineMenu" unique_id=729065800]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -112.75
-offset_top = -185.0
-offset_right = 112.75
-offset_bottom = -94.999756
+offset_left = -1897.5311
+offset_top = -1878.0698
+offset_right = -1339.2637
+offset_bottom = -1452.349
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 0
 theme_override_font_sizes/font_size = 32
-text = "START GAME"
 
-[node name="MainPlayer" type="AudioStreamPlayer" parent="." unique_id=1085070788]
-volume_db = -5.0
-autoplay = true
-
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="MaineMenu/Button" to="." method="_on_button_pressed"]
