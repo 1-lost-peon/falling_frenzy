@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bia1l67q1y6p6" path="res://world/world.gd" id="1_h5o24"]
 [ext_resource type="PackedScene" uid="uid://lrinlb8xkn2x" path="res://world/good_drop/good_drop.tscn" id="2_4717r"]
 [ext_resource type="PackedScene" uid="uid://dxexlluj30ndj" path="res://world/bad_drop/bad_drop.tscn" id="3_h5o24"]
+[ext_resource type="Texture2D" uid="uid://byw14kabvg6rh" path="res://world/platform.png" id="4_mmdvd"]
 [ext_resource type="PackedScene" uid="uid://cxm5iyfnt55ym" path="res://world/player/player.tscn" id="7_sc4t8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dyoc1"]
@@ -61,9 +62,19 @@ collision_mask = 3
 [node name="Polygon2D" type="Polygon2D" parent="Level/StaticBody2D" unique_id=1887930539]
 polygon = PackedVector2Array(0, 800, 0, 500, 1152, 500, 1152, 800)
 
+[node name="Platform" type="Sprite2D" parent="Level/StaticBody2D" unique_id=1103895160]
+position = Vector2(164, 603)
+scale = Vector2(0.2628205, 0.2628205)
+texture = ExtResource("4_mmdvd")
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Level/StaticBody2D" unique_id=1890030533]
 position = Vector2(568, 649.5)
 shape = SubResource("RectangleShape2D_dyoc1")
+
+[node name="Platform2" type="Sprite2D" parent="Level/StaticBody2D" unique_id=1438323256]
+position = Vector2(738.28845, 601)
+scale = Vector2(0.6694361, 0.2628205)
+texture = ExtResource("4_mmdvd")
 
 [node name="StaticBody2D2" type="StaticBody2D" parent="Level" unique_id=1098710222]
 collision_layer = 3
