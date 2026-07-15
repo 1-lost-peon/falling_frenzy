@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://bia1l67q1y6p6" path="res://world/world.gd" id="1_h5o24"]
 [ext_resource type="PackedScene" uid="uid://lrinlb8xkn2x" path="res://world/good_drop/good_drop.tscn" id="2_4717r"]
 [ext_resource type="PackedScene" uid="uid://dxexlluj30ndj" path="res://world/bad_drop/bad_drop.tscn" id="3_h5o24"]
+[ext_resource type="Texture2D" uid="uid://rxp1245owyi8" path="res://world/background.png" id="4_fn3g3"]
 [ext_resource type="Texture2D" uid="uid://byw14kabvg6rh" path="res://world/platform.png" id="4_mmdvd"]
 [ext_resource type="PackedScene" uid="uid://cxm5iyfnt55ym" path="res://world/player/player.tscn" id="7_sc4t8"]
 
@@ -33,6 +34,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.08, 0.08, 0.08, 1)
+
+[node name="Background2" type="Sprite2D" parent="." unique_id=1205747886]
+position = Vector2(599.49994, 284.0017)
+scale = Vector2(0.7385057, 0.3019959)
+texture = ExtResource("4_fn3g3")
 
 [node name="Player1Score" type="Label" parent="." unique_id=455446615]
 layout_mode = 1
